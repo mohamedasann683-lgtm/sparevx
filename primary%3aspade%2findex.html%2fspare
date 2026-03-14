@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SPIDERCOLA - متجر روبلوكس الرسمي 🕷️🥤</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    .tail-container { font-family: system-ui, sans-serif; }
+    .product-card { transition: all 0.3s; }
+    .product-card:hover { transform: scale(1.05); box-shadow: 0 0 30px #ff0000; }
+    .cart-modal { animation: slideUp 0.4s ease; }
+    @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
+  </style>
+</head>
+<body class="tail-container bg-zinc-950 text-white">
+
+  <!-- Navbar -->
+  <nav class="bg-black sticky top-0 z-50 border-b border-red-600">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <div class="flex items-center gap-3">
+        <span class="text-4xl">🕷️🥤</span>
+        <h1 class="text-3xl font-bold tracking-widest text-red-500">SPIDERCOLA</h1>
+      </div>
+      <div class="flex gap-8 text-lg">
+        <a href="#home" class="hover:text-red-500 transition">الرئيسية</a>
+        <a href="#products" class="hover:text-red-500 transition">المنتجات</a>
+        <a href="#promo" class="hover:text-red-500 transition">كود مجاني</a>
+        <a href="#contact" class="hover:text-red-500 transition">اتصل بنا</a>
+      </div>
+      <button onclick="toggleCart()" class="relative flex items-center gap-2 bg-red-600 px-6 py-2 rounded-full hover:bg-red-700">
+        <i class="fas fa-shopping-cart"></i>
+        <span id="cart-count" class="absolute -top-2 -right-2 bg-yellow-400 text-black text-xs w-5 h-5 flex items-center justify-center rounded-full">0</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section id="home" class="relative h-screen flex items-center justify-center bg-cover bg-center" style="background-image: url('https://picsum.photos/id/1015/1920/1080');">
+    <div class="absolute inset-0 bg-black/70"></div>
+    <div class="text-center z-10 px-6">
+      <h2 class="text-6xl font-black tracking-widest mb-4">SPIDER<span class="text-red-500">COLA</span></h2>
+      <p class="text-3xl mb-8">متجر روبلوكس الأسطوري في المغرب 🕷️🥤</p>
+      <a href="#products" class="inline-block bg-red-600 hover:bg-red-700 text-white px-12 py-5 rounded-2xl text-2xl font-bold transition">تسوق الآن</a>
+    </div>
+  </section>
+
+  <!-- Products -->
+  <section id="products" class="max-w-7xl mx-auto px-6 py-20">
+    <h2 class="text-5xl font-bold text-center mb-12">المنتجات 🔥</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8" id="products-grid">
+      <!-- JS will fill here -->
+    </div>
+  </section>
+
+  <!-- Promo Code -->
+  <section id="promo" class="bg-zinc-900 py-20">
+    <div class="max-w-4xl mx-auto text-center px-6">
+      <h2 class="text-5xl font-black mb-6">الكود المجاني الشهير</h2>
+      <div class="bg-black p-10 rounded-3xl border-4 border-red-600">
+        <p class="text-6xl font-mono tracking-widest text-yellow-400 mb-6">SPIDERCOLA</p>
+        <p class="text-2xl mb-8">يطلع لك إكسسوار الكتف Spider Cola (لسة شغال 2026!)</p>
+        <a href="https://www.roblox.com/promocodes" target="_blank" class="bg-yellow-400 text-black px-10 py-4 rounded-2xl text-2xl font-bold inline-block hover:scale-110 transition">استرده الآن مجانًا</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="max-w-7xl mx-auto px-6 py-20">
+    <h2 class="text-5xl font-bold text-center mb-12">تواصل معانا</h2>
+    <div class="bg-zinc-900 p-10 rounded-3xl max-w-2xl mx-auto">
+      <form class="space-y-6">
+        <input type="text" placeholder="اسمك" class="w-full bg-black p-5 rounded-2xl">
+        <input type="email" placeholder="إيميلك" class="w-full bg-black p-5 rounded-2xl">
+        <textarea placeholder="رسالتك" class="w-full bg-black p-5 rounded-2xl h-40"></textarea>
+        <button type="button" onclick="alert('شكرًا! سنرد عليك قريبًا 🕷️')" class="w-full bg-red-600 py-6 rounded-2xl text-2xl font-bold">أرسل الرسالة</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-black py-10 text-center">
+    <p>© 2026 SPIDERCOLA - متجر روبلوكس fan-made للمتعة فقط • Casablanca, Morocco</p>
+  </footer>
+
+  <!-- Cart Modal -->
+  <div id="cart-modal" class="hidden fixed inset-0 bg-black/80 flex items-end justify-center z-50">
+    <div class="bg-zinc-900 w-full max-w-2xl rounded-t-3xl cart-modal p-8">
+      <h3 class="text-3xl mb-6">سلة التسوق 🛒</h3>
+      <div id="cart-items" class="space-y-6 mb-8"></div>
+      <div class="flex justify-between text-2xl font-bold mb-8">
+        <span>الإجمالي:</span>
+        <span id="cart-total">0 MAD</span>
+      </div>
+      <button onclick="checkout()" class="w-full bg-green-600 py-6 rounded-2xl text-2xl font-bold">إتمام الشراء</button>
+      <button onclick="toggleCart()" class="mt-4 text-red-500 w-full">إغلاق</button>
+    </div>
+  </div>
+
+  <script>
+    const products = [
+      {id:1, name:"تيشيرت SPIDERCOLA", price:149, img:"https://picsum.photos/id/201/400/400"},
+      {id:2, name:"هودي Spider Cola", price:199, img:"https://picsum.photos/id/29/400/400"},
+      {id:3, name:"كاب عنكبوت كولا", price:89, img:"https://picsum.photos/id/160/400/400"},
+      {id:4, name:"كارت هدية 400 روبوكس", price:150, img:"https://picsum.photos/id/251/400/400"},
+      {id:5, name:"إكسسوار كتف Spider Cola (Digital)", price:299, img:"https://picsum.photos/id/1015/400/400"},
+      {id:6, name:"تيشيرت Roblox Hero", price:129, img:"https://picsum.photos/id/180/400/400"},
+      {id:7, name:"هودي Avatar Rainbow", price:219, img:"https://picsum.photos/id/201/400/400"},
+      {id:8, name:"كروت هدية 1000 روبوكس", price:299, img:"https://picsum.photos/id/251/400/400"}
+    ];
+
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    function renderProducts() {
+      const grid = document.getElementById('products-grid');
+      grid.innerHTML = products.map(p => `
+        <div class="product-card bg-zinc-900 rounded-3xl overflow-hidden">
+          <img src="${p.img}" class="w-full h-64 object-cover">
+          <div class="p-6">
+            <h3 class="text-xl font-bold">${p.name}</h3>
+            <p class="text-red-500 text-3xl font-black mt-2">${p.price} MAD</p>
+            <button onclick="addToCart(${p.id})" class="mt-6 w-full bg-red-600 py-4 rounded-2xl hover:bg-red-700">أضف للسلة</button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function addToCart(id) {
+      const product = products.find(p => p.id === id);
+      cart.push(product);
+      localStorage.setItem('cart', JSON.stringify(cart));
+      updateCartCount();
+      alert(`${product.name} تمت إضافته للسلة! 🛒`);
+    }
+
+    function updateCartCount() {
+      document.getElementById('cart-count').textContent = cart.length;
+    }
+
+    function toggleCart() {
+      const modal = document.getElementById('cart-modal');
+      modal.classList.toggle('hidden');
+      renderCart();
+    }
+
+    function renderCart() {
+      const container = document.getElementById('cart-items');
+      container.innerHTML = cart.map((item, index) => `
+        <div class="flex gap-6 items-center">
+          <img src="${item.img}" class="w-20 h-20 rounded-2xl object-cover">
+          <div class="flex-1">
+            <h4 class="font-bold">${item.name}</h4>
+            <p class="text-red-500">${item.price} MAD</p>
+          </div>
+          <button onclick="removeFromCart(${index})" class="text-red-500 text-2xl">🗑️</button>
+        </div>
+      `).join('');
+      const total = cart.reduce((sum, item) => sum + item.price, 0);
+      document.getElementById('cart-total').textContent = `${total} MAD`;
+    }
+
+    function removeFromCart(index) {
+      cart.splice(index, 1);
+      localStorage.setItem('cart', JSON.stringify(cart));
+      renderCart();
+      updateCartCount();
+    }
+
+    function checkout() {
+      if (cart.length === 0) return alert("السلة فارغة!");
+      alert("شكرًا لك! سيتم تسليم طلبك قريبًا 🕷️ (هذا موقع تجريبي)");
+      cart = [];
+      localStorage.clear();
+      toggleCart();
+      updateCartCount();
+    }
+
+    // Init
+    renderProducts();
+    updateCartCount();
+  </script>
+</body>
+</html>
